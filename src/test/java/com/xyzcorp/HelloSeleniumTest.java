@@ -12,12 +12,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class HelloSeleniumTest {
 
     private static ChromeDriver chromeDriver;
-    
+
+    /**
+     * This is the setup. The issue is that we did not use a DriverManager
+     * DriverManager's will download will download and manage the appropriate driver
+     * This is not it.
+     */
+
     @BeforeAll
     public static void setUp(){
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\fatou.diouf\\chrome-drivers\\98\\chromedriver_win32\\chromedriver.exe");
         chromeDriver = new ChromeDriver();
     }
+
+    /**
+     * This test will go to Google and perform a search for
+     * "Behaviour Driven Development" and hit enter. Just to ensure
+     * that Selenium works as expected.
+     */
 
 
     @Test
