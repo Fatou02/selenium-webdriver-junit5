@@ -1,4 +1,8 @@
 target/
 .idea/
+<<<<<<< HEAD
 *.iml
 .vscode/
+=======
+.vscode/
+>>>>>>> 0ea6d900d70c053d46a235c67f8ef5036259283f
