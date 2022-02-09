@@ -47,7 +47,7 @@ public class SearchCGI {
     }
 
     @Test
-    public void ChangePageClickSearchButtonAndFillInContactUsForm() throws InterruptedException {
+    public void ChangePageClickSearchButtonAndFillInContactUsForm() {
         chromeDriver.findElement(By.cssSelector("#cgi-offers-section > div > div.paragraph.paragraph--type--cgi-offer.paragraph--view-mode--default.offer-icon-bulb > div.keywords > div > div:nth-child(2) > a")).click();
         //chromeDriver.findElement(By.linkText("Gouvernements")).click();
         chromeDriver.findElement(By.cssSelector(".search-icon-btn")).click();
@@ -81,8 +81,6 @@ public class SearchCGI {
 
         /*WebDriverWait waitErrorMessage = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
         WebElement ErrorMessage = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#webform-submission-how-can-we-help-add-form--WXFlF07z_kc > div.messages.drupal-messages.messages--error > div > ul > li:nth-child(1)")));*/
-
-
 
     }
 
