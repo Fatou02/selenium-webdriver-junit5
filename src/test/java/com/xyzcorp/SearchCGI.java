@@ -20,6 +20,10 @@ public class SearchCGI {
     @BeforeEach
     void setup() {
         chromeDriver = WebDriverManager.chromedriver().create();
+        chromeDriver.manage().window().maximize();
+        chromeDriver.get("https://www.cgi.com/fr");
+
+        chromeDriver.findElement(By.xpath("//*[@id='popup-buttons']/button[1]")).click();
     }
 
     @AfterEach
@@ -27,35 +31,44 @@ public class SearchCGI {
         chromeDriver.quit();
     }
 
-    @Test
-    public void searchingInCGI() {
+  /*  @Test
+    public void AcceptCookies() {
         chromeDriver.get("https://www.cgi.com/fr");
-        //chromeDriver.manage().window().setSize(new Dimension(1936, 1056));
 
         chromeDriver.findElement(By.xpath("//*[@id='popup-buttons']/button[1]")).click();
+    }*/
 
-        chromeDriver.manage().window().maximize();
 
+    @Test
+    public void ChangeLanguage() {
 
-        //chromeDriver.manage().window().setPosition(new Point(0, 0));
+        chromeDriver.findElement(By.cssSelector("#block-languageswitcher > ul > li.fr.is-active > a")).click();
+        chromeDriver.findElement(By.cssSelector("#block-languageswitcher > ul > li.en > a")).click();
+    }
 
-        //chromeDriver.findElement(By.cssSelector("#block-languageswitcher > ul > li.en.is-active > a")).click();
-        //chromeDriver.findElement(By.cssSelector("#block-languageswitcher > ul > li.fr > a")).click();
-        /*chromeDriver.findElement(By.linkText("Gouvernements")).click();
+    @Test
+    public void ChangePageClickSearchButtonAndFillInContactUsForm() {
+        chromeDriver.findElement(By.cssSelector("#cgi-offers-section > div > div.paragraph.paragraph--type--cgi-offer.paragraph--view-mode--default.offer-icon-bulb > div.keywords > div > div:nth-child(2) > a")).click();
+        //chromeDriver.findElement(By.linkText("Gouvernements")).click();
         chromeDriver.findElement(By.cssSelector(".search-icon-btn")).click();
-        chromeDriver.findElement(By.cssSelector(".fa-close")).click();*/
+        chromeDriver.findElement(By.cssSelector(".fa-close")).click();
+
 
         WebDriverWait wait = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
 
         WebElement contactezNous = wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.linkText("Contactez-nous")));
 
-                contactezNous.click();
+        contactezNous.click();
 
-        //chromeDriver.findElement(By.linkText("Contactez-nous")).click();
+        WebDriverWait waitContacts = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
+        WebElement contactlist = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#ui-id-2")));
+
+
+
         chromeDriver.findElement(By.name("name")).sendKeys("Fatou");
         chromeDriver.findElement(By.name("company")).sendKeys("CGI");
-        chromeDriver.findElement(By.name("email")).sendKeys("abcd");
+        //chromeDriver.findElement(By.name("email")).sendKeys("abcd");
         chromeDriver.findElement(By.name("phone")).sendKeys("7");
         chromeDriver.findElement(By.name("relationship_to_cgi[select]")).click();
         {
@@ -68,3 +81,4 @@ public class SearchCGI {
     }
 
 }
+
